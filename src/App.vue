@@ -9,6 +9,13 @@
       <router-link to="/nest">네스트</router-link>
     </div>
     <router-view></router-view>
+    <div class="header_tmp"><img src="../logo.png" width=50px>헤더가 여기 있어야 되는데...
+      <router-link to="/">메인</router-link>
+      <router-link to="/lake">레이크</router-link>
+      <router-link to="/live">라이브</router-link>
+      <input type="text" placeholder="검색박스">
+      <router-link to="/nest">네스트</router-link>
+    </div>
   </div>
 </template>
 
