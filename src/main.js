@@ -4,13 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-import Header from './components/Header'
-import Card from './components/Card'
+import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
+import Button from './components/Button'
 
 Vue.config.productionTip = false
 
-Vue.component('header', Header)
-Vue.component('card', Card)
+Vue.component('main-header', Header)
+Vue.component('main-footer', Footer)
+Vue.component('btn', Button)
 
 /* eslint-disable no-new */
 new Vue({

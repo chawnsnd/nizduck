@@ -14,11 +14,13 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "froala-editor": "^2.8.4",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-editor": "^2.5.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.1.0",
