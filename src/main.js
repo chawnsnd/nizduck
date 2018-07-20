@@ -4,14 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-import Header from './components/layout/Header'
-import Footer from './components/layout/Footer'
 import Button from './components/Button'
 
 Vue.config.productionTip = false
 
-Vue.component('main-header', Header)
-Vue.component('main-footer', Footer)
 Vue.component('btn', Button)
 
 /* eslint-disable no-new */

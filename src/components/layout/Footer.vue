@@ -19,7 +19,7 @@ export default {
   name: 'Header',
   data () {
     return {
-      msg: 'afasdf'
+      msg: ''
     }
   }
 }
@@ -33,6 +33,7 @@ export default {
   text-align: center;
   line-height: 50px;
   vertical-align: center;
+  bottom: 0;
   *{
     margin: 0 10px;
     text-decoration: none;

@@ -1,6 +1,6 @@
 <template>
-    <div class="header">
-      <div class="top">
+    <div class="header" :class="{fixed: $route.path == '/', fixed: $route.path == '/nest'}">
+      <div class="top" id="top">
         <div class="main" @click="goMain">
           <span class="logo"><img src="../../../logo.png" width=30px></span>
           <span class="title">NIZDUCK</span>
@@ -11,8 +11,9 @@
         </div>
       </div>
       <div class="bottom">
+        <router-link to='/'><span>피드</span></router-link>
         <router-link to='/lake' active-class="active"><span>레이크</span></router-link>
-        <router-link to='/live' active-class="active"><span>라이브</span></router-link>
+        <router-link to='/live' active-class="active" class="disabled"><span>라이브</span></router-link>
         <router-link to='/nest' active-class="active"><span>네스트</span></router-link>
         <div class="right">
           <router-link to='/login' active-class="active"><span><i class="fas fa-sign-in-alt"> LOGIN</i></span></router-link>
@@ -28,7 +29,7 @@ export default {
   name: 'Header',
   data () {
     return {
-      msg: 'afasdf'
+      msg: ''
     }
   },
   methods: {
@@ -40,17 +41,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.fixed{
+  position: fixed;
+  top: 0;
+}
 .header{
-  padding-top: 20px;
   background-color: white;
   border-bottom: 2px solid salmon;
   width: 100%;
+  padding-top: 10px;
 }
 .top{
+  padding-top: 10px;
   margin: auto;
   text-align: center;
   width: 1000px;
   display: flex;
+  margin-bottom: 20px;
   .main{
     flex: 0.5;
   }
@@ -88,7 +95,7 @@ export default {
   }
 }
 .bottom{
-  margin-top: 20px;
+  position: relative;
   span{
     text-align: center;
     cursor: pointer;

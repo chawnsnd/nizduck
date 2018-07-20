@@ -10,42 +10,51 @@ import BoardPost from '@/components/lake/board/BoardPost'
 import BoardModify from '@/components/lake/board/BoardModify'
 import SNS from '@/components/lake/sns/SNS'
 import Calendar from '@/components/lake/calendar/Calendar'
+import DetailCalendar from '@/components/lake/calendar/DetailCalendar'
 import Live from '@/components/Live'
-import Nest from '@/components/Nest'
+import Nest from '@/components/nest/Nest'
 import Login from '@/components/Login'
 import Join from '@/components/Join'
+
+import Layout from '@/components/layout/Layout'
 
 Vue.use(Router)
 
 const routes = [
-  { path: '/', component: Main },
-  { path: '/lake', component: LakeMain },
-  { path: '/lake/:artist',
-    component: Lake,
-    children: [{
-      path: 'board',
-      component: Board
-    }, {
-      path: 'board/post',
-      component: BoardPost
-    }, {
-      path: 'board/:bno',
-      component: BoardDetail
-    }, {
-      path: 'board/:bno/modify',
-      component: BoardModify
-    }, {
-      path: 'sns',
-      component: SNS
-    }, {
-      path: 'calendar',
-      component: Calendar
-    }]
+  { path: '/',
+    component: Layout,
+    children: [
+      { path: '', component: Main },
+      { path: 'lake', component: LakeMain },
+      { path: 'lake/:artist',
+        component: Lake,
+        children: [{
+          path: 'board',
+          component: Board
+        }, {
+          path: 'board/post',
+          component: BoardPost
+        }, {
+          path: 'board/:bno',
+          component: BoardDetail
+        }, {
+          path: 'board/:bno/modify',
+          component: BoardModify
+        }, {
+          path: 'sns',
+          component: SNS
+        }, {
+          path: 'calendar',
+          component: Calendar
+        }]
+      },
+      { path: '/live', component: Live },
+      { path: '/nest', component: Nest }
+    ]
   },
-  { path: '/live', component: Live },
-  { path: '/nest', component: Nest },
   { path: '/login', component: Login },
-  { path: '/join', component: Join }
+  { path: '/join', component: Join },
+  { path: '/calendar/:artist/:date', component: DetailCalendar }
 ]
 
 export default new Router({

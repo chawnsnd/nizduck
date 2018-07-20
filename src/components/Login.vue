@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <div class="login_box">
-            <div class="title">NIZDUCK</div>
+            <div class="title" @click="goMain">NIZDUCK</div>
             <div class="form">
                 <div class="typing"><input type="text" placeholder="아이디"/></div>
                 <div class="typing"><input type="password" placeholder="패스워드"/></div>
@@ -29,6 +29,9 @@ export default {
   methods: {
     goJoin () {
       this.$router.push('/join')
+    },
+    goMain () {
+      this.$router.push('/')
     }
   }
 }
@@ -36,7 +39,6 @@ export default {
 
 <style lang="scss" scoped>
 .login{
-    width: 1000px;
     margin: auto;
 }
 .login_box{
@@ -49,6 +51,7 @@ export default {
     color: salmon;
     font-weight: bold;
     font-size: 80px;
+    cursor: pointer;
 }
 input[type='text'], input[type='password']{
     width: 100%;

@@ -1,16 +1,12 @@
 <template>
-  <div class="main">
-      <card></card>
-      <card></card>
-      <card></card>
-      <card></card>
-      <card></card>
-      <wing></wing>
+  <div class="main" id="main">
+    <card class="card" v-for="card in length" :key="card"></card>
+    <wing></wing>
   </div>
 </template>
 
 <script>
-import Card from './Card'
+import Card from '../Card'
 import Wing from './Wing'
 
 export default {
@@ -21,8 +17,37 @@ export default {
   name: 'Main',
   data () {
     return {
-      msg: 'Welcome to Nizduck'
+      msg: 'Welcome to Nizduck',
+      length: 5
     }
+  },
+  methods: {
+    infiniteScroll (e) {
+      var cards = document.getElementsByClassName('card')
+      var cardArr = [...cards]
+      var mainHeight = 0
+      var topHeader = document.getElementById('top')
+      for (var i = 1; i < cardArr.length - 1; i++) {
+        mainHeight += cardArr[i].offsetHeight
+      }
+      if (e.wheelDeltaY < 0) {
+        topHeader.style.display = 'none'
+      }
+      if (e.wheelDeltaY >= 0) {
+        topHeader.style.display = 'flex'
+      }
+      if (window.scrollY >= mainHeight) {
+        this.length += 5
+      }
+    }
+  },
+  mounted () {
+    window.addEventListener('mousewheel', this.infiniteScroll)
+  },
+  beforeDestroy () {
+    var topHeader = document.getElementById('top')
+    topHeader.style.display = 'flex'
+    window.removeEventListener('mousewheel', this.infiniteScroll)
   }
 }
 </script>

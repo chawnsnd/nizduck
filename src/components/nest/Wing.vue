@@ -1,40 +1,14 @@
 <template>
     <div class="wing">
         <div class="wing_box">
-            <div class="form">
-                <div class="typing">
-                    <input type="text" placeholder="아이디"/>
-                    <input type="password" placeholder="패스워드"/>
-                </div>
-                <btn class="pink" style="display: inline-block;">로그인</btn>
-            </div>
-            <div class="bottom">
-                <label><input type="checkbox">로그인 상태 유지</label>
-                <div class="btns">
-                    <router-link to="/join"><span>회원가입</span></router-link>
-                    <span>아이디/비밀번호 찾기</span>
-                </div>
-            </div>
-        </div>
-        <div class="wing_box">
-            <div class="user">
-                <div class="profile">
-                </div>
-                <div class="meta">
-                    <div class="duck">닉네임임당</div>
-                    <div class="email">chawnsnd@gmail.com</div>
-                </div>
-            </div>
-        </div>
-        <div class="wing_box">
             <div class="section">
-                <div class="title">내 최애 레이크</div>
+                <div class="title">최애 레이크</div>
                 <div class="lakes">
                     <div class="lake">오마이걸</div>
                 </div>
             </div>
             <div class="section" style="margin-bottom: 0;">
-                <div class="title">내 관심 레이크</div>
+                <div class="title">관심 레이크</div>
                 <div class="lakes">
                     <div class="lake">트와이스</div>
                     <div class="lake">레드벨벳</div>

@@ -4,8 +4,8 @@
       <div class="artist" @click="goArtist" style="cursor: pointer;">오마이걸</div>
       <div class="menu_bar">
         <router-link :to="`/lake/${artist}/board`" active-class="active"><div class="menu"><span class="name">게시판<div class="count">24</div></span></div></router-link>
-        <div class="menu live"><span class="name">LIVE</span></div>
-        <router-link :to="`/lake/${artist}/sns`" active-class="active"><div class="menu"><span class="name">SNS<div class="count">3</div></span></div></router-link>
+        <router-link :to="`/lake/${artist}/sns`" active-class="active" class="disabled"><div class="menu live"><span class="name">LIVE</span></div></router-link>
+        <router-link :to="`/lake/${artist}/sns`" active-class="active" class="disabled"><div class="menu"><span class="name">SNS<div class="count">3</div></span></div></router-link>
         <router-link :to="`/lake/${artist}/calendar`" active-class="active"><div class="menu"><span class="name">달력</span></div></router-link>
       </div>
     </div>

@@ -1,14 +1,14 @@
 <template>
     <div class="join">
         <div class="join_box">
-            <div class="title">NIZDUCK</div>
+            <div class="title" @click="goMain">NIZDUCK</div>
             <div class="progress">
                 <span class="active">약관</span>
                 <span>기본정보</span>
                 <span>추가정보</span>
                 <span>가입완료</span>
             </div>
-            <div class="form terms disabled">
+            <div class="form terms">
                 <div class="section">
                     <div class="name">니즈덕 이용약관 동의</div>
                     <div class="terms_box">
@@ -53,7 +53,7 @@
                 </div>
                 <btn class="pink">다음으로</btn>
             </div>
-            <div class="form default disabled">
+            <div class="form default">
                 <div class="section">
                     <div class="name">이메일</div>
                     <div class="typing"><input type="text" placeholder="이메일"/></div>
@@ -187,18 +187,14 @@ export default {
     }
   },
   methods: {
-    goJoin () {
-      alert('asfd')
-      this.$router.push('/join')
+    goMain () {
+      this.$router.push('/')
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.disabled{
-    display: none;
-}
 .join{
     width: 1000px;
     margin: auto;
@@ -227,6 +223,8 @@ export default {
     color: salmon;
     font-weight: bold;
     font-size: 80px;
+    cursor: pointer;
+    margin-bottom: 20px;
 }
 .form{
     margin-top: 30px;

@@ -85,6 +85,13 @@ export default {
   &.salmon:hover{
     background-color: rgba(250, 128, 114, 0.5);
   }
+  &.white{
+    background-color: white;
+    color: black;
+  }
+  &.white:hover{
+    background-color: #eaeaea;
+  }
   &:disabled {
     cursor: not-allowed;
     background-color: grey;
