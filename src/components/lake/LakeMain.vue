@@ -13,11 +13,11 @@
       <div class="lakebox">
         <div class="typing"><input type="text" placeholder="레이크 검색"></div>
         <div class="sub_title">그룹</div>
-        <div class="artist" v-for="artist in 30" :key="artist"><router-link to="/lake/ohmygirl/board">오마이걸</router-link></div>
+        <div class="artist" v-for="artist in 30" :key="artist"><router-link to="/lake/ohmygirl">오마이걸</router-link></div>
         <div class="sub_title">개인</div>
-        <div class="artist" v-for="artist in 30" :key="artist"><router-link to="/lake/ohmygirl/board">오마이걸</router-link></div>
+        <div class="artist" v-for="artist in 30" :key="artist"><router-link to="/lake/ohmygirl">오마이걸</router-link></div>
         <div class="sub_title">기타</div>
-        <div class="artist" v-for="artist in 30" :key="artist"><router-link to="/lake/ohmygirl/board">오마이걸</router-link></div>
+        <div class="artist" v-for="artist in 30" :key="artist"><router-link to="/lake/ohmygirl">오마이걸</router-link></div>
       </div>
     </div>
   </div>

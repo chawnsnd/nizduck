@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Main from '@/components/main/Main'
 import LakeMain from '@/components/lake/LakeMain'
 import Lake from '@/components/lake/Lake'
+import Artist from '@/components/lake/Artist'
 import Board from '@/components/lake/board/Board'
 import BoardDetail from '@/components/lake/board/BoardDetail'
 import BoardPost from '@/components/lake/board/BoardPost'
@@ -29,6 +30,9 @@ const routes = [
       { path: 'lake/:artist',
         component: Lake,
         children: [{
+          path: '',
+          component: Artist
+        }, {
           path: 'board',
           component: Board
         }, {
@@ -49,7 +53,8 @@ const routes = [
         }]
       },
       { path: '/live', component: Live },
-      { path: '/nest', component: Nest }
+      { path: '/nest/', component: Nest },
+      { path: '/nest/:duck', component: Nest }
     ]
   },
   { path: '/login', component: Login },

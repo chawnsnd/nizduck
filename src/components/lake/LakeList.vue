@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     goLake (artist) {
-      this.$router.push('/lake/ohmygirl/board')
+      this.$router.push('/lake/ohmygirl')
     }
   }
 }

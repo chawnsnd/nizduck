@@ -1,59 +1,37 @@
 <template>
   <div class="nest">
-    <div class="header">
-      <div class="background">
-      </div>
-      <div class="profile">
-        <div class="profile_img"></div>
-        <div class="right">
-          <div>
-            <span class="duck">웅치킨</span>
-            <btn class="white">팔로우</btn>
-            <span>신고</span>
-            <span>차단</span>
-          </div>
-          <div>
-            <span class="meta_section">
-              <span class="meta_title">게시물</span>
-              <span class="meta_content">402</span>
-            </span>
-            <span class="meta_section">
-              <span class="meta_title">팔로워</span>
-              <span class="meta_content">28.9천</span>
-            </span>
-            <span class="meta_section">
-              <span class="meta_title">팔로우</span>
-              <span class="meta_content">272</span>
-            </span>
-          </div>
-          <div class="aboutme">
-            안녕하세요 자기소개입니당~
-          </div>
-        </div>
-      </div>
-    </div>
+    <nest-header></nest-header>
     <div class="content">
-      <card class="card" v-for="card in length" :key="card"></card>
-      <wing></wing>
+      <div class="nav">
+        <span class="item" :class="{active: nav=='post'}" @click="nav='post'">게시물</span>
+        <span class="item" :class="{active: nav=='guestbook'}" @click="nav='guestbook'">방명록</span>
+      </div>
+      <div class="cards" v-if="nav=='post'">
+        <card class="card" v-for="card in length" :key="card" ></card>
+      </div>
+      <guestbook v-if="nav=='guestbook'"></guestbook>
+      <wing :class="{absolute: nav=='guestbook'}"></wing>
     </div>
   </div>
 </template>
 
 <script>
-import Button from '../Button'
 import Card from '../Card'
 import Wing from './Wing'
+import Header from './Header'
+import Guestbook from './Guestbook'
 export default {
-  name: 'Lake',
   data () {
     return {
-      length: 5
+      length: 5,
+      nav: 'post'
     }
   },
   components: {
-    'btn': Button,
     'card': Card,
-    'wing': Wing
+    'wing': Wing,
+    'nest-header': Header,
+    'guestbook': Guestbook
   },
   methods: {
     infiniteScroll (e) {
@@ -61,7 +39,6 @@ export default {
       var cardArr = [...cards]
       var mainHeight = 0
       var topHeader = document.getElementById('top')
-      console.log(topHeader)
       for (var i = 1; i < cardArr.length - 1; i++) {
         mainHeight += cardArr[i].offsetHeight
       }
@@ -94,33 +71,26 @@ export default {
   margin: auto;
   margin-top: 130px;
 }
-.header{
+.nav{
   border-radius: 10px;
+  background: white;
+  width: 640px;
+  height: 50px;
+  line-height: 50px;
   margin-top: 20px;
+  display: flex;
   border: 1px solid #eaeaea;
-  background-color: white;
-  height: 350px;
-}
-.background{
-  height: 200px;
-  background-image: url(../../../tmp/omg.jpg);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-.profile{
-  > * { display: inline-block; }
-}
-.profile_img{
-  width: 130px;
-  height: 130px;
-  border-radius: 100%;
-  display: inline-block;
-  background-image: url(https://lh3.googleusercontent.com/-NTJJG92Ek_s/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7pjeQd8704Lo9OwhH3Zt-x8ro1KHA/s192-c-mo/photo.jpg);
-}
-.right{
-  vertical-align: top;
-  height: 130px;
-  width: 850px;
+  .item{
+    cursor: pointer;
+    display: inline-block;
+    flex: 1;
+    text-align: center;
+    height: 100%;
+  }
+  .active{
+    border-radius: 10px;
+    border: 1px solid orange;
+  }
 }
 .card{
   margin-top: 20px;
@@ -128,7 +98,13 @@ export default {
 .wing{
   width: 300px;
   position: fixed;
-  top: 502px;
+  top: 525px;
   margin-left: 700px;
+}
+.absolute{
+  position: absolute;
+}
+.guestbook{
+  margin: 20px 0;
 }
 </style>

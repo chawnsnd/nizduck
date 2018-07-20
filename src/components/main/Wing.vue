@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="wing_box">
+        <div class="wing_box last">
             <div class="section">
                 <div class="title">내 최애 레이크</div>
                 <div class="lakes">
@@ -77,6 +77,7 @@ export default {
     padding: 20px;
     margin-bottom: 30px;
 }
+.last { margin-bottom: 0; }
 .form{
     display: flex;
     margin-bottom: 5px;

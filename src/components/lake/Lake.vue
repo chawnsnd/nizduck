@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     goArtist () {
-      this.$router.push(`/lake/${this.artist}/board`)
+      this.$router.push(`/lake/${this.artist}`)
     }
   }
 }
@@ -39,7 +39,6 @@ export default {
   border: 1px solid #eaeaea;
   height: 200px;
   background-image: url(../../../tmp/omg.jpg);
-  opacity: 0.8;
   border-radius: 10px;
   margin-top: 20px;
   .artist{

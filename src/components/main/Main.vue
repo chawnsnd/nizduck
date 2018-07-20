@@ -57,6 +57,7 @@ export default {
 .main{
   width: 1000px;
   margin: auto;
+  margin-top: 130px;
 }
 .wing{
   width: 300px;

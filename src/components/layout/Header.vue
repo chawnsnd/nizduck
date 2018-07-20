@@ -1,5 +1,5 @@
 <template>
-    <div class="header" :class="{fixed: $route.path == '/', fixed: $route.path == '/nest'}">
+    <div class="header" :class="{fixed: $route.path == '/' || $route.path == '/nest'}">
       <div class="top" id="top">
         <div class="main" @click="goMain">
           <span class="logo"><img src="../../../logo.png" width=30px></span>
@@ -11,13 +11,13 @@
         </div>
       </div>
       <div class="bottom">
-        <router-link to='/'><span>피드</span></router-link>
-        <router-link to='/lake' active-class="active"><span>레이크</span></router-link>
+        <router-link to='/'><span>FEED</span></router-link>
+        <router-link to='/lake' active-class="active"><span>LAKE</span></router-link>
         <router-link to='/live' active-class="active" class="disabled"><span>라이브</span></router-link>
-        <router-link to='/nest' active-class="active"><span>네스트</span></router-link>
         <div class="right">
           <router-link to='/login' active-class="active"><span><i class="fas fa-sign-in-alt"> LOGIN</i></span></router-link>
-          <router-link to='/account' active-class="active"><span><i class="fas fa-cog"> ACCOUNT</i></span></router-link>
+          <router-link to='/nest' active-class="active"><span><i class="fas fa-home"> NEST</i></span></router-link>
+          <router-link to='/account' active-class="active"><span><i class="fas fa-cog"> SETTING</i></span></router-link>
           <span><i class="fas fa-sign-out-alt"> LOGOUT</i></span>
         </div>
       </div>
