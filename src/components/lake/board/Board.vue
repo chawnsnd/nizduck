@@ -2,12 +2,12 @@
 <div class="board">
   <div class="board_main">
     <div class="head">
-      <span class="no">글번호</span>
-      <span class="title">글제목</span>
+      <span class="no">번호</span>
+      <span class="title">제목</span>
       <span class="duck">덕네임</span>
       <span class="time">시간</span>
-      <span class="count">조회수</span>
-      <span class="like">추천수</span>
+      <span class="count">조회</span>
+      <span class="like">추천</span>
     </div>
     <div class="notice">
       <span class="no">공지</span>
@@ -50,7 +50,7 @@
         <option>전체</option>
         <option>제목</option>
         <option>내용</option>
-        <option>글쓴이</option>
+        <option>덕네임</option>
         <option>제목+내용</option>
       </select>
       <input type="text">
@@ -125,6 +125,7 @@ export default {
 }
 .head {
   background-color: #eaeaea;
+  border-bottom: 1px solid grey;
   font-weight: bold;
   .title{ text-align: center; }
 }

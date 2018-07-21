@@ -58,7 +58,7 @@ export default {
   padding: 20px;
 }
 .header{
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid grey;
   padding-bottom: 5px;
   .profile{
     width: 50px;
@@ -107,7 +107,7 @@ export default {
   max-height: 400px;
 }
 .comments{
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid grey;
   padding: 10px 0 10px 0;
   .count{
     color: grey;
@@ -135,7 +135,7 @@ export default {
   font-size: 30px;
   color: grey;
   padding-top: 5px;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid grey;
 }
 .more:hover{
   color: black;

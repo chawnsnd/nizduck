@@ -76,7 +76,7 @@ export default {
   margin-top: 20px;
 }
 .header{
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid grey;
   padding-bottom: 5px;
   .profile{
     width: 50px;
@@ -122,7 +122,7 @@ export default {
   overflow: hidden;
 }
 .comments{
-  border-top: 2px solid #eaeaea;
+  border-top: 1px solid grey;
   padding: 10px 0 10px 0;
   .count{
     color: grey;

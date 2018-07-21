@@ -118,6 +118,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .calendar{
+  width: 700px;
   margin-top: 20px;
 }
 .message{
@@ -137,9 +138,11 @@ export default {
   height: 50px;
   line-height: 50px;
   width: 100%;
-  background-color: pink;
-  color: white;
-  font-size: 30px;
+  background-color: #eaeaea;
+  border: 1px solid #eaeaea;
+  border-bottom: 1px solid grey;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   text-align: center;
   * { display: inline-block; }
   .prev{
@@ -156,15 +159,14 @@ export default {
     width: 100px;
     margin-right: 10px;
     height: 100%;
-    font-size: 30px;
-    background-color: pink;
-    color: white;
+    font-size: 20px;
+    background-color: #eaeaea;
     text-align: right;
     border: none;
     outline: none;
   }
   .btn{
-    right: 400px;
+    right: 100px;
     top: 5px;
     position: absolute;
   }
@@ -181,7 +183,7 @@ export default {
   height: 30px;
   }
   td{
-    height: 150px;
+    height: 90px;
     vertical-align: top;
     border: 1px solid #eaeaea;
     padding: 5px;
