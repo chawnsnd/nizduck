@@ -111,6 +111,9 @@ export default {
   },
   mounted () {
     this.setToday()
+  },
+  updated () {
+    this.setCalendar();
   }
 }
 </script>

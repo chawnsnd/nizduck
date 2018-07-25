@@ -87,6 +87,7 @@ export default {
   margin-bottom: 20px;
   .search_bar{
     display: inline-block;
+    background-color: white;
     border: 3px solid pink;
     input, select{
       border: none;
@@ -99,7 +100,7 @@ export default {
 }
 
 .head, .notice, .article{
-  padding: 5px 5px;
+  padding: 8px 5px;
   border-bottom: 1px solid #eaeaea;
   cursor: pointer;
   display: flex;
@@ -134,6 +135,7 @@ export default {
 }
 .notice:hover, .article:hover{
   background-color: rgba(255, 192, 203, 0.2);
+  text-decoration: underline;
 }
 .active{
   background-color: #eaeaea
@@ -149,7 +151,7 @@ export default {
 .pagination{
   margin: 20px 0 20px 0;
   text-align: center;
-  font-size: 18px;
+  font-size: 15px;
   position: relative;
   span{
     cursor: pointer;
