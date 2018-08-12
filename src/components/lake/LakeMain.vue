@@ -1,15 +1,15 @@
 <template>
   <div class="lake_main">
     <div class="section">
-      <div class="title">HOT 레이크</div>
+      <div class="title">HOT LAKE</div>
       <lake-list></lake-list>
     </div>
     <div class="section">
-      <div class="title">MY 레이크</div>
+      <div class="title">MY LAKE</div>
       <lake-list></lake-list>
     </div>
     <div class="section">
-      <div class="title">전체 레이크</div>
+      <div class="title">ALL LAKE</div>
       <div class="lakebox">
         <div class="typing"><input type="text" placeholder="레이크 검색"></div>
         <div class="sub_title">그룹</div>

@@ -113,7 +113,7 @@ export default {
     this.setToday()
   },
   updated () {
-    this.setCalendar();
+    this.setCalendar()
   }
 }
 </script>

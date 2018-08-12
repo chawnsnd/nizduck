@@ -28,13 +28,13 @@
         </div>
         <div class="wing_box last">
             <div class="section">
-                <div class="title">내 최애 레이크</div>
+                <div class="title">MY LAKE</div>
                 <div class="lakes">
                     <div class="lake">오마이걸</div>
                 </div>
             </div>
             <div class="section" style="margin-bottom: 0;">
-                <div class="title">내 관심 레이크</div>
+                <div class="title">Hmm...teresting</div>
                 <div class="lakes">
                     <div class="lake">트와이스</div>
                     <div class="lake">레드벨벳</div>
