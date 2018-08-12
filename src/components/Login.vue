@@ -3,12 +3,12 @@
         <div class="login_box">
             <div class="title" @click="goMain">NIZDUCK</div>
             <div class="form">
-                <div class="typing"><input type="text" placeholder="아이디"/></div>
-                <div class="typing"><input type="password" placeholder="패스워드"/></div>
-                <div class="submit"><btn class="pink">로그인</btn></div>
+                <div class="typing"><input v-model="form.email" type="text" placeholder="이메일"/></div>
+                <div class="typing"><input v-model="form.password" type="password" placeholder="패스워드"/></div>
+                <div class="submit"><btn class="pink" @click="clickLogin()">로그인</btn></div>
             </div>
             <div class="bottom">
-                <div class="maintain"><label class="maintain"><input type="checkbox"/>로그인 상태 유지</label></div>
+                <div class="maintain"><label class="maintain"><input type="checkbox" v-model="form.keep" />로그인 상태 유지</label></div>
                 <div class="etc">
                     <div class="find_id" @click="goFindId">아이디 찾기</div>
                     <div class="find_id" @click="goFIndPw">비밀번호 찾기</div>
@@ -20,10 +20,17 @@
 </template>
 
 <script>
+/* eslint-disable */
+import User from '../models/user'
 export default {
   data () {
     return {
-      msg: 'login'
+      msg: 'login',
+      form: {
+        email: null,
+        password: null,
+        keep: false
+      }
     }
   },
   methods: {
@@ -32,6 +39,17 @@ export default {
     },
     goMain () {
       this.$router.push('/')
+    },
+    clickLogin () {
+        this.login()
+    },
+    login () {
+        User.login(this.form)
+        .then(() => {
+            this.$router.push('/')
+        }).catch(err => {
+          this.login.message = err.message;
+        })
     }
   }
 }

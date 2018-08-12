@@ -419,19 +419,19 @@ export default {
     },
     join () {
         this.axios
-            .post("/user", this.form)
-            .then(res => {
-                if(res.data.success){
-                    alert("회원가입이 완료되었습니다.")
-                    this.$router.push('/');
-                }else{
-                    alert("회원가입에 실패했습니다.")
-                    console.log(res.data.message)
-                }
-            })
-            .catch(err => {
-                alert("회원가입에 실패했습니다.", err)
-            })
+        .post("/user", this.form)
+        .then(res => {
+            if(res.data.success){
+                alert("회원가입이 완료되었습니다.")
+                this.$router.push('/');
+            }else{
+                alert("회원가입에 실패했습니다.")
+                console.log(res.data.message)
+            }
+        })
+        .catch(err => {
+            alert("회원가입에 실패했습니다.", err)
+        })
     }
   }
 }
