@@ -1,7 +1,7 @@
 <template>
     <div class="wing">
         <div class="wing_box">
-            <div class="form">
+            <div class="form" v-if="!didLogin">
                 <div class="typing">
                     <input type="text" placeholder="아이디"/>
                     <input type="password" placeholder="패스워드"/>
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <div class="wing_box">
+        <div class="wing_box" v-if="didLogin">
             <div class="user">
                 <div class="profile">
                 </div>
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="wing_box last">
+        <div class="wing_box last" v-if="didLogin">
             <div class="section">
                 <div class="title">MY LAKE</div>
                 <div class="lakes">
@@ -60,11 +60,19 @@
 </template>
 
 <script>
+import User from '../../models/user'
+
 export default {
   data () {
     return {
-      msg: 'sadf'
+      msg: 'sadf',
+      didLogin: false,
+      me: {}
     }
+  },
+  mounted () {
+    this.didLogin = User.didLogin
+    this.me = User.me
   }
 }
 </script>
