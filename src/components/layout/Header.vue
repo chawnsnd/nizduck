@@ -15,27 +15,37 @@
         <router-link to='/lake' active-class="active"><span>LAKE</span></router-link>
         <router-link to='/live' active-class="active" class="disabled"><span>라이브</span></router-link>
         <div class="right">
-          <router-link to='/login' active-class="active"><span><i class="fas fa-sign-in-alt"> LOGIN</i></span></router-link>
-          <router-link to='/nest' active-class="active"><span><i class="fas fa-home"> NEST</i></span></router-link>
-          <router-link to='/account' active-class="active"><span><i class="fas fa-cog"> SETTING</i></span></router-link>
-          <span><i class="fas fa-sign-out-alt"> LOGOUT</i></span>
+          <router-link to='/login' v-if="!didLogin" active-class="active"><span><i class="fas fa-sign-in-alt"> LOGIN</i></span></router-link>
+          <router-link to='/nest' v-if="didLogin" active-class="active"><span><i class="fas fa-home"> NEST</i></span></router-link>
+          <router-link to='/account' v-if="didLogin" active-class="active"><span><i class="fas fa-cog"> SETTING</i></span></router-link>
+          <span v-if="didLogin" @click="logout()"><i class="fas fa-sign-out-alt"> LOGOUT</i></span>
         </div>
       </div>
     </div>
 </template>
 
 <script>
+import User from '../../models/user'
 export default {
   name: 'Header',
   data () {
     return {
-      msg: ''
+      msg: '',
+      didLogin: false,
+      me: {}
     }
   },
   methods: {
     goMain () {
       this.$router.push('/')
+    },
+    logout () {
+      User.logout()
     }
+  },
+  mounted () {
+    this.didLogin = User.didLogin
+    this.me = User.me
   }
 }
 </script>

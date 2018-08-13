@@ -74,7 +74,6 @@ export default {
     },
     goDetail (article) {
       this.$router.push(`/lake/${this.artist}/board/${article}`)
-      window.location.reload()
     }
   }
 }

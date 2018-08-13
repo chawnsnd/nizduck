@@ -1,15 +1,10 @@
 <template>
     <div class="wing">
-        <div class="wing_box">
-            <div class="form" v-if="!didLogin">
-                <div class="typing">
-                    <input type="text" placeholder="아이디"/>
-                    <input type="password" placeholder="패스워드"/>
-                </div>
-                <btn class="pink" style="display: inline-block;">로그인</btn>
+        <div class="wing_box" v-if="!didLogin">
+            <div class="form">
+                <btn class="pink" @click="goToLogin()" style="display: inline-block;">로그인 하러가기</btn>
             </div>
             <div class="bottom">
-                <label><input type="checkbox">로그인 상태 유지</label>
                 <div class="btns">
                     <router-link to="/join"><span>회원가입</span></router-link>
                     <span>아이디/비밀번호 찾기</span>
@@ -19,10 +14,12 @@
         <div class="wing_box" v-if="didLogin">
             <div class="user">
                 <div class="profile">
+                    <img v-if="me.profile" :src="me.profile" width="50px" height="50px" />
+                    <img v-else src="../../assets/logo.png" width="50px" height="50px" />
                 </div>
                 <div class="meta">
-                    <div class="duck">닉네임임당</div>
-                    <div class="email">chawnsnd@gmail.com</div>
+                    <div class="duck">{{me.duckname}}</div>
+                    <div class="email">{{me.email}}</div>
                 </div>
             </div>
         </div>
@@ -30,19 +27,13 @@
             <div class="section">
                 <div class="title">MY LAKE</div>
                 <div class="lakes">
-                    <div class="lake">오마이걸</div>
+                    <div class="lake">{{me.bias}}</div>
                 </div>
             </div>
             <div class="section" style="margin-bottom: 0;">
                 <div class="title">Hmm...teresting</div>
                 <div class="lakes">
-                    <div class="lake">트와이스</div>
-                    <div class="lake">레드벨벳</div>
-                    <div class="lake">마마무</div>
-                    <div class="lake">여자친구</div>
-                    <div class="lake">블랙핑크</div>
-                    <div class="lake">오마이걸</div>
-                    <div class="lake">러블리즈</div>
+                    <div class="lake" v-for="interest in me.interest" :key="interest">{{interest}}</div>
                 </div>
             </div>
         </div>
@@ -67,7 +58,17 @@ export default {
     return {
       msg: 'sadf',
       didLogin: false,
-      me: {}
+      me: {},
+      form: {
+        email: null,
+        password: null,
+        keep: false
+      }
+    }
+  },
+  methods: {
+    goToLogin () {
+      this.$router.push('/login')
     }
   },
   mounted () {
@@ -114,7 +115,6 @@ export default {
         height: 50px;
         border-radius: 100%;
         display: inline-block;
-        background-image: url(https://lh3.googleusercontent.com/-NTJJG92Ek_s/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7pjeQd8704Lo9OwhH3Zt-x8ro1KHA/s192-c-mo/photo.jpg)
     }
     .meta{
         margin-left: 10px;

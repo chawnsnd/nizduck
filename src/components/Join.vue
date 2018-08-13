@@ -222,6 +222,9 @@ export default {
       }
     }
   },
+  mounted () {
+      document.getElementById('email').focus()
+  },
   methods: {
     goMain () {
       this.$router.push('/')
