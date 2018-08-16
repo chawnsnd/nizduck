@@ -2,7 +2,6 @@
 <div>
     <h1>아티스트 관리 페이지</h1>
     <h2>아티스트 추가</h2>
-    <form>
     <label>국문이름<input type="text" v-model="form.ko_name"/></label>
     <label>영문이름<input type="text" v-model="form.en_name"/></label>
     <label>프로필사진<input type="image" v-model="form.profile"/></label>
@@ -14,16 +13,25 @@
             <option value="etc">기타</option>
         </select>
     </label>
+    <label>상태메시지
+        <textarea v-model="form.status_message"/>
+    </label>
     <input @click="postArtist()" type="submit" value="등록">
-    </form>
-</div>    
+</div>
 </template>
 
 <script>
+/* eslint-disable */
 export default {
     data () {
         return {
-            msg: ''
+            form: {
+                ko_name: null,
+                en_name: null,
+                profile_image: null,
+                main_image: null,
+                status_message: null
+            }
         }
     },
     methods: {
@@ -31,9 +39,12 @@ export default {
             this.axios
             .post('/artist', this.form)
             .then(res => {
-                console.log(res)
+                if(!res.data.success) return console.log('등록에 실패했습니다.')
+                this.$router.push('/')
             })
-            .catch
+            .catch(err => {
+                console.log('등록에 실패했습니다.', err)
+            })
         }
     }
 }

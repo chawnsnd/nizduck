@@ -17,6 +17,8 @@ import Nest from '@/components/nest/Nest'
 import Login from '@/components/Login'
 import Join from '@/components/Join'
 
+import ArtistManagement from '@/components/Artist'
+
 import Layout from '@/components/layout/Layout'
 
 Vue.use(Router)
@@ -59,7 +61,8 @@ const routes = [
   },
   { path: '/login', component: Login },
   { path: '/join', component: Join },
-  { path: '/calendar/:artist/:date', component: DetailCalendar }
+  { path: '/calendar/:artist/:date', component: DetailCalendar },
+  { path: '/artist', component: ArtistManagement }
 ]
 
 export default new Router({

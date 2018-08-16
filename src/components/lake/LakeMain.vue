@@ -11,19 +11,20 @@
     <div class="section">
       <div class="title">ALL LAKE</div>
       <div class="lakebox">
-        <div class="typing"><input type="text" placeholder="레이크 검색"></div>
+        <div class="typing"><input type="text" v-model="search" @keyup="searchLakeByName(search)" placeholder="레이크 검색"></div>
         <div class="sub_title">그룹</div>
-        <div class="artist" v-for="artist in 30" :key="artist"><router-link to="/lake/ohmygirl">오마이걸</router-link></div>
+        <div class="artist" v-for="artist in groupList" :key="artist"><router-link :to="`/lake/${artist.en_name}`">{{artist.ko_name}}</router-link></div>
         <div class="sub_title">개인</div>
-        <div class="artist" v-for="artist in 30" :key="artist"><router-link to="/lake/ohmygirl">오마이걸</router-link></div>
+        <div class="artist" v-for="artist in privateList" :key="artist"><router-link :to="`/lake/${artist.en_name}`">{{artist.ko_name}}</router-link></div>
         <div class="sub_title">기타</div>
-        <div class="artist" v-for="artist in 30" :key="artist"><router-link to="/lake/ohmygirl">오마이걸</router-link></div>
+        <div class="artist" v-for="artist in etcList" :key="artist"><router-link :to="`/lake/${artist.en_name}`">{{artist.ko_name}}</router-link></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
 import LakeList from './LakeList'
 
 export default {
@@ -32,8 +33,54 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Nizduck'
+      msg: 'Welcome to Nizduck',
+      groupList: [],
+      privateList: [],
+      etcList: [],
+      search: ''
     }
+  },
+  methods: {
+    fetchArtist (query={}) {
+      var queryy = query
+      return new Promise((resolve, reject, query) => {
+        this.axios
+          .get("/artist/list", {params: queryy})
+          .then(res => {
+            if (!res.data.success) return reject();
+            resolve(res.data.list)
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
+    },
+    searchLakeByName(name){
+      this.fetchArtist({kind: 'group', name: name})
+        .then(list => {
+          this.groupList = list;
+        })
+        .catch(err => {
+          console.log("리스트를 불러오는데 실패했습니다.")
+        });
+      this.fetchArtist({kind: 'private', name: name})
+        .then(list => {
+          this.privateList = list;
+        })
+        .catch(err => {
+          console.log("리스트를 불러오는데 실패했습니다.")
+        });
+      this.fetchArtist({kind: 'etc', name: name})
+        .then(list => {
+          this.etcList = list;
+        })
+        .catch(err => {
+          console.log("리스트를 불러오는데 실패했습니다.")
+        });
+    }
+  },
+  mounted () {
+    this.searchLakeByName('')
   }
 }
 </script>
