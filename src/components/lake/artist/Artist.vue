@@ -3,32 +3,19 @@
         <div class="left">
             <div class="top">
                 <div class="profile">
-                    <div class="profile_img"></div>
+                    <img v-if="artist.profile_image" :src="me.profile_image" width="100px" height="100px" />
+                    <img v-else src="../../../assets/logo.png" width="100px" height="100px" />
                 </div>
                 <div class="meta">
-                    <div class="name">오마이걸</div>
+                    <div class="name">{{artist.ko_name}}</div>
                     <div class="count">
-                        <span class="sub_title">최애</span><span>2.4천</span>
-                        <span class="sub_title">관심</span><span>4.4천</span>
+                        <span class="sub_title">최애</span><span>{{artist.bias}}</span>
+                        <span class="sub_title">관심</span><span>{{artist.interest}}</span>
                     </div>
                 </div>
             </div>
             <div class="bottom">
-오피셜 : http://ohmy-girl.com/omg_official/
-
-유튜브 : https://www.youtube.com/channel/UC-qYkzKFdekoEniRu_FS3zg
-오피셜 : http://ohmy-girl.com/omg_official/
-
-유튜브 : https://www.youtube.com/channel/UC-qYkzKFdekoEniRu_FS3zg
-오피셜 : http://ohmy-girl.com/omg_official/
-
-유튜브 : https://www.youtube.com/channel/UC-qYkzKFdekoEniRu_FS3zg
-오피셜 : http://ohmy-girl.com/omg_official/
-
-유튜브 : https://www.youtube.com/channel/UC-qYkzKFdekoEniRu_FS3zg
-오피셜 : http://ohmy-girl.com/omg_official/
-
-유튜브 : https://www.youtube.com/channel/UC-qYkzKFdekoEniRu_FS3zg
+                {{artist.status_message}}
             </div>
         </div>
         <div class="right">
@@ -82,11 +69,31 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   data () {
     return {
-      msg: ''
+      msg: '',
+      artist: null
     }
+  },
+  methods: {
+    fetchArtist() {
+      var artist = this.$route.params.artist
+      this.axios
+        .get(`/artist/${artist}`)
+        .then(res => {
+          if (!res.data.success)
+            return console.log("아티스트를 가져오는데 실패했습니다.");
+          this.artist = res.data.artist;
+        })
+        .catch(err => {
+          return console.log("아티스트를 가져오는데 실패했습니다.", err);
+        });
+    }
+  },
+  mounted() {
+      this.fetchArtist();
   }
 }
 </script>
@@ -112,13 +119,6 @@ export default {
     display: flex;
     .profile{
         flex: 1;
-    }
-    .profile_img{
-        background-image: url(../../../tmp/omg.jpg);
-        width: 100px;
-        height: 100px;
-        border-radius: 100%;
-        display: inline-block;
     }
     .meta{
         flex: 3;

@@ -61,19 +61,43 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   data () {
     return {
-      artist: this.$route.params.artist,
       bno: this.$route.params.bno
     }
   },
   methods: {
     goPost () {
-      this.$router.push(`/lake/${this.artist}/board/post`)
+      this.$router.push(`/lake/${this.artist.en_name}/board/post`)
     },
     goDetail (article) {
-      this.$router.push(`/lake/${this.artist}/board/${article}`)
+      this.$router.push(`/lake/${this.artist.en_name}/board/${article}`)
+    },
+    fetchArtist() {
+      this.axios
+        .get("/artist", { params: { en_name: this.$route.params.artist } })
+        .then(res => {
+          if (!res.data.success)
+            return console.log("아티스트를 가져오는데 실패했습니다.");
+          this.artist = res.data.artist;
+        })
+        .catch(err => {
+          return console.log("아티스트를 가져오는데 실패했습니다.", err);
+        });
+    },
+    fetchBoard() {
+      this.axios
+        .get(`/board/${this.artist._id}`)
+        .then(res => {
+          if (!res.data.success)
+            return console.log("게시판을 가져오는데 실패했습니다.");
+          this.board = res.data.board;
+        })
+        .catch(err => {
+          return console.log("게시판을 가져오는데 실패했습니다.", err);
+        });
     }
   }
 }

@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Main from '@/components/main/Main'
-import LakeMain from '@/components/lake/LakeMain'
+import LakeList from '@/components/lake/LakeList'
 import Lake from '@/components/lake/Lake'
-import Artist from '@/components/lake/Artist'
+import Artist from '@/components/lake/artist/Artist'
 import Board from '@/components/lake/board/Board'
 import BoardDetail from '@/components/lake/board/BoardDetail'
 import BoardPost from '@/components/lake/board/BoardPost'
@@ -28,7 +28,7 @@ const routes = [
     component: Layout,
     children: [
       { path: '', component: Main },
-      { path: 'lake', component: LakeMain },
+      { path: 'lake', component: LakeList },
       { path: 'lake/:artist',
         component: Lake,
         children: [{
