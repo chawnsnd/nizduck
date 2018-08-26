@@ -30,9 +30,9 @@
     </div>
   </div>
   <div class="bottom">
-    <router-link :to="`/lake/${artist}/board`"><btn>전체목록</btn></router-link>
+    <router-link :to="`/lake/${artist.en_name}/board`"><btn>전체목록</btn></router-link>
     <btn class="red right" @click="clickDelete">삭제</btn>
-    <router-link :to="`/lake/${artist}/board/${item.bno}/modify`"><btn class="orange right">수정</btn></router-link>
+    <router-link :to="`/lake/${artist.en_name}/board/${bno}/modify`"><btn class="orange right">수정</btn></router-link>
   </div>
   <board-list :bno="bno" />
 </div>
