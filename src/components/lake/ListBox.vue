@@ -5,7 +5,12 @@
       <div class="artist" v-for="artist in artists" :key="artist" @click="goLake(artist.en_name)">
         <span class="rank_circle">{{artist._id}}</span>
         <span class="artist_circle">{{artist.ko_name}}</span>
-        </div>
+      </div>
+      <!-- 임시 -->
+      <div class="artist" @click="goLake('ohmygirl')">
+        <span class="rank_circle">1</span>
+        <span class="artist_circle">오마이걸</span>
+      </div>
     </div>
     <div class="next nav"><i class="fas fa-chevron-right"></i></div>
   </div>

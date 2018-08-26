@@ -5,16 +5,17 @@
     <div class="section">
       <span class="name">덕네임</span>
       <input type="text" placeholder="덕네임"/>
+      <span v-if="didLogin">{{artist.duckname}}</span>
     </div>
     <div class="section">
       <span class="name">비밀번호</span>
-      <input type="password" placeholder="비밀번호"/>
+      <input type="password" v-model="form.password"  placeholder="비밀번호"/>
     </div>
     <div class="section">
       <span class="name">제목</span>
-      <input type="text" class="title" placeholder="제목을 입력하세요."/>
+      <input type="text" v-model="form.title" class="title" placeholder="제목을 입력하세요."/>
     </div>
-    <vue-editor class="editor" placeholder="글 작성 시 발생할 수 있는 모든 책임은 작성자에게 있습니다."></vue-editor>
+    <vue-editor class="editor" v-model="form.content" placeholder="글 작성 시 발생할 수 있는 모든 책임은 작성자에게 있습니다."></vue-editor>
     <div class="btns">
       <btn @click="goBack">취소</btn>
       <btn class="navy right" @click="clickPost">등록</btn>
@@ -24,15 +25,30 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { VueEditor } from 'vue2-editor'
+import User from '../../../models/user'
+import Artist from '../../../models/artist'
 export default {
   components: {
     VueEditor
   },
   data () {
     return {
-      artist: this.$route.params.artist
+      artist: {},
+      form: {
+        password: null,
+        title: null,
+        content: null
+      },
+      didLogin: false,
+      me: {}
     }
+  },
+  mounted() {
+    this.didLogin = User.didLogin
+    this.me = User.me
+    this.artist = Artist.current
   },
   methods: {
     goBack () {
@@ -40,10 +56,26 @@ export default {
     },
     clickPost () {
       if (confirm('글을 등록하시겠습니까?')) {
-        // 처리
-        alert('글이 등록되었습니다.')
-        this.$router.push(`/lake/${this.artist}/board/${123}`)
+        if(this.me){
+          this.form.author = this.me._id  
+        }else{
+          this.form.anonymous = true
+        }
+        this.form.artist = this.artist._id
+        this.postBoard(this.form)
       }
+    },
+    postBoard (data) {
+        this.axios
+        .post('/board', data)
+        .then(res => {
+            if(!res.data.success) return console.log('등록에 실패했습니다.', res.data.message)
+            alert('글이 등록되었습니다.')
+            this.$router.push(`/lake/${this.artist}/board/${res.bno}`)
+        })
+        .catch(err => {
+            console.log('등록에 실패했습니다.', err)
+        })
     }
   }
 }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Main from '@/components/main/Main'
-import LakeList from '@/components/lake/LakeList'
+import LakeList from '@/components/lake/List'
 import Lake from '@/components/lake/Lake'
 import Artist from '@/components/lake/artist/Artist'
 import Board from '@/components/lake/board/Board'

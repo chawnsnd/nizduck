@@ -21,17 +21,17 @@
       <span class="count">28</span>
       <span class="like">4444</span>
     </div>
-    <div class="article" v-for="a in 30" v-bind:key="a" v-bind:class="{'active': a == bno}">
-      <span class="no">{{30-a+1}}</span>
-      <span class="title" @click="goDetail(30-a+1)">
-        김도아 분량이 적은 이유.fact
+    <div class="article" v-for="item in list" v-bind:key="item._id" v-bind:class="{'active': item._id === bno}">
+      <span class="no">{{item._id}}</span>
+      <span class="title" @click="goDetail(item._id)">
+        {{item.title}}
         <span class="picture"><i class="fas fa-image"></i></span>
-        <span class="comment">[3]</span>
+        <span class="comment">[{{item.comment}}]</span>
       </span>
-      <span class="duck">닉네임임당</span>
-      <span class="time">3시간 전</span>
-      <span class="count">28</span>
-      <span class="like">37</span>
+      <span class="duck">{{item.author}}</span>
+      <span class="time">{{item.reg_date}}</span>
+      <span class="count">{{item.count}}</span>
+      <span class="like">{{item.like}}</span>
     </div>
   </div>
   <div class="pagination">
@@ -62,38 +62,32 @@
 
 <script>
 /* eslint-disable */
+import Artist from '../../../models/artist'
 export default {
   data () {
     return {
-      bno: this.$route.params.bno
+      artist: {},
+      list: [],
     }
+  },
+  props: ['bno'],
+  mounted() {
+    this.artist = Artist.current;
+    this.fetchBoard();
   },
   methods: {
     goPost () {
       this.$router.push(`/lake/${this.artist.en_name}/board/post`)
     },
-    goDetail (article) {
-      this.$router.push(`/lake/${this.artist.en_name}/board/${article}`)
-    },
-    fetchArtist() {
-      this.axios
-        .get("/artist", { params: { en_name: this.$route.params.artist } })
-        .then(res => {
-          if (!res.data.success)
-            return console.log("아티스트를 가져오는데 실패했습니다.");
-          this.artist = res.data.artist;
-        })
-        .catch(err => {
-          return console.log("아티스트를 가져오는데 실패했습니다.", err);
-        });
+    goDetail (bno) {
+      this.$router.push(`/lake/${this.artist.en_name}/board/${bno}`)
     },
     fetchBoard() {
       this.axios
         .get(`/board/${this.artist._id}`)
         .then(res => {
-          if (!res.data.success)
-            return console.log("게시판을 가져오는데 실패했습니다.");
-          this.board = res.data.board;
+          if (!res.data.success) return console.log("게시판을 가져오는데 실패했습니다.", res.data.message);
+          this.list = res.data.list;
         })
         .catch(err => {
           return console.log("게시판을 가져오는데 실패했습니다.", err);

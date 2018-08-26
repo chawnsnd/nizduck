@@ -3,8 +3,8 @@
         <div class="left">
             <div class="top">
                 <div class="profile">
-                    <img v-if="artist.profile_image" :src="me.profile_image" width="100px" height="100px" />
-                    <img v-else src="../../../assets/logo.png" width="100px" height="100px" />
+                    <img v-if="!artist.profile_image" src="../../../assets/logo.png" width="100px" height="100px" />
+                    <img v-else :src="artist.profile_image" width="100px" height="100px" />
                 </div>
                 <div class="meta">
                     <div class="name">{{artist.ko_name}}</div>
@@ -70,30 +70,18 @@
 
 <script>
 /* eslint-disable */
+import Artist from '../../../models/artist'
 export default {
   data () {
     return {
       msg: '',
-      artist: null
+      artist: {}
     }
   },
   methods: {
-    fetchArtist() {
-      var artist = this.$route.params.artist
-      this.axios
-        .get(`/artist/${artist}`)
-        .then(res => {
-          if (!res.data.success)
-            return console.log("아티스트를 가져오는데 실패했습니다.");
-          this.artist = res.data.artist;
-        })
-        .catch(err => {
-          return console.log("아티스트를 가져오는데 실패했습니다.", err);
-        });
-    }
   },
   mounted() {
-      this.fetchArtist();
+    this.artist = Artist.current;
   }
 }
 </script>

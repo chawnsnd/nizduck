@@ -8,7 +8,7 @@
       <div class="artist" @click="goArtist" style="cursor: pointer;">{{artist.ko_name}}</div>
       <div class="menu_bar">
         <router-link :to="`/lake/${artist.en_name}/board`" active-class="active"><div class="menu"><span class="name">게시판<div class="count">24</div></span></div></router-link>
-        <router-link :to="`/lake/${artist.en_name}/sns`" active-class="active" class="disabled"><div class="menu live"><span class="name">LIVE</span></div></router-link>
+        <router-link :to="`/lake/${artist.en_name}/live`" active-class="active" class="disabled"><div class="menu live"><span class="name">LIVE</span></div></router-link>
         <router-link :to="`/lake/${artist.en_name}/sns`" active-class="active" class="disabled"><div class="menu"><span class="name">SNS<div class="count">3</div></span></div></router-link>
         <router-link :to="`/lake/${artist.en_name}/calendar`" active-class="active"><div class="menu"><span class="name">달력</span></div></router-link>
       </div>
@@ -19,10 +19,11 @@
 
 <script>
 /* eslint-disable */
+import Artist from '../../models/artist'
 export default {
   data() {
     return {
-      artist: null
+      artist: {}
     };
   },
   methods: {
@@ -30,17 +31,13 @@ export default {
       this.$router.push(`/lake/${this.artist.en_name}`);
     },
     fetchArtist() {
-      var artist = this.$route.params.artist
-      this.axios
-        .get(`/artist/${artist}`)
-        .then(res => {
-          if (!res.data.success)
-            return console.log("아티스트를 가져오는데 실패했습니다.");
-          this.artist = res.data.artist;
-        })
-        .catch(err => {
-          return console.log("아티스트를 가져오는데 실패했습니다.", err);
-        });
+      Artist.fetchArtist(this.$route.params.artist)
+      .then((res) => {
+        this.artist = res;
+      })
+      .catch(err => {
+        console.log("에러발생", err)
+      })
     }
   },
   mounted () {
