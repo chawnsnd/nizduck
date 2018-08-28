@@ -2,15 +2,18 @@
 <div class="board_detail">
   <div class="detail">
     <div class="header">
-      <div class="profile"></div>
+      <div class="profile">
+        <img v-if="me.profile" :src="me.profile" width="50px" height="50px" />
+        <img v-else src="../../../assets/logo.png" width="50px" height="50px" />
+      </div>
       <div class="meta">
         <div class="title">{{item.title}}</div>
-        <span class="duck">{{item.author}}</span>
+        <span class="duck">{{item.author_duckname}}</span>
         <span class="lake">{{artist.ko_name}}</span>
         <span class="time">{{item.reg_date}}</span>
       </div>
       <div class="btns">
-        <span><i class="fas fa-thumbs-up"></i>{{item.like}}</span>
+        <span><i class="fas fa-thumbs-up"></i>{{item.vote_count}}</span>
         <i class="fas fa-share-alt"></i>
       </div>
     </div>
@@ -41,6 +44,7 @@
 <script>
 /* eslint-disable */
 import Artist from "../../../models/artist";
+import User from '../../../models/user'
 import Board from "./Board";
 
 export default {
@@ -52,12 +56,19 @@ export default {
       artist: {},
       item: {},
       loading: false,
-      bno: this.$route.params.bno
+      bno: this.$route.params.bno,
+      didLogin: false,
+      me: {}
     };
   },
   created() {
     this.artist = Artist.current;
     this.init(this.$route.params.bno);
+    
+  },
+  mounted() {
+    this.didLogin = User.didLogin
+    this.me = User.me
   },
   watch: {
     '$route': function() {
@@ -117,13 +128,6 @@ export default {
 .header {
   border-bottom: 1px solid grey;
   padding-bottom: 5px;
-  .profile {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    display: inline-block;
-    background-image: url(https://lh3.googleusercontent.com/-NTJJG92Ek_s/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7pjeQd8704Lo9OwhH3Zt-x8ro1KHA/s192-c-mo/photo.jpg);
-  }
   .meta {
     display: inline-block;
     vertical-align: top;

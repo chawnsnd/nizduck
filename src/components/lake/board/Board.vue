@@ -28,10 +28,10 @@
         <span class="picture"><i class="fas fa-image"></i></span>
         <span class="comment">[{{item.comment}}]</span>
       </span>
-      <span class="duck">{{item.author}}</span>
+      <span class="duck">{{item.author_duckname}}</span>
       <span class="time">{{item.reg_date}}</span>
-      <span class="count">{{item.count}}</span>
-      <span class="like">{{item.like}}</span>
+      <span class="count">{{item.view_count}}</span>
+      <span class="like">{{item.vote_count}}</span>
     </div>
   </div>
   <div class="pagination">
@@ -67,7 +67,7 @@ export default {
   data () {
     return {
       artist: {},
-      list: [],
+      list: []
     }
   },
   props: ['bno'],

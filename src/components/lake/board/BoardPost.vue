@@ -4,10 +4,10 @@
     <h1>새 글 작성하기</h1>
     <div class="section">
       <span class="name">덕네임</span>
-      <input type="text" placeholder="덕네임"/>
-      <span v-if="didLogin">{{artist.duckname}}</span>
+      <span v-if="didLogin">{{me.duckname}}</span>
+      <input v-else type="text" v-model="form.duckname" placeholder="덕네임"/>
     </div>
-    <div class="section">
+    <div class="section" v-if="!didLogin">
       <span class="name">비밀번호</span>
       <input type="password" v-model="form.password"  placeholder="비밀번호"/>
     </div>
@@ -37,6 +37,7 @@ export default {
     return {
       artist: {},
       form: {
+        duckname: null,
         password: null,
         title: null,
         content: null
@@ -57,7 +58,9 @@ export default {
     clickPost () {
       if (confirm('글을 등록하시겠습니까?')) {
         if(this.me){
-          this.form.author = this.me._id  
+          this.form.author = this.me._id
+          this.form.duckname = this.me.duckname
+          this.form.profile = this.me.profile
         }else{
           this.form.anonymous = true
         }
